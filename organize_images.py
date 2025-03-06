@@ -3,13 +3,11 @@ import shutil
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
 
-# Define input and output directories
-INPUT_FOLDER = "transmission_tower_images"  # Folder where images are stored
+INPUT_FOLDER = "transmission_tower_images" 
 ORG_FOLDER = os.path.join(INPUT_FOLDER, "organized")
 THERMAL_FOLDER = os.path.join(ORG_FOLDER, "thermal")
 RGB_FOLDER = os.path.join(ORG_FOLDER, "rgb")
 
-# Create necessary folders
 os.makedirs(THERMAL_FOLDER, exist_ok=True)
 os.makedirs(RGB_FOLDER, exist_ok=True)
 
@@ -25,7 +23,6 @@ def extract_metadata(image_path):
                 tag_name = TAGS.get(tag, tag)
                 metadata[tag_name] = value
 
-            # Extract GPS data
             gps_info = {}
             if "GPSInfo" in metadata:
                 for key in metadata["GPSInfo"].keys():
@@ -54,10 +51,10 @@ def rename_and_organize_images():
         file_path = os.path.join(INPUT_FOLDER, filename)
 
         if not os.path.isfile(file_path):
-            continue  # Skip folders
+            continue  
 
         metadata = extract_metadata(file_path)
-        print(f"Metadata for {filename}: {metadata}")  # Debugging line
+        print(f"Metadata for {filename}: {metadata}")
 
         timestamp = metadata.get("DateTimeOriginal", "Unknown").replace(":", "").replace(" ", "_")
         gps_str = format_gps(metadata.get("GPSInfo", {}))
