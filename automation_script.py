@@ -3,7 +3,6 @@ import shutil
 import zipfile
 import pandas as pd
 
-# Define directories
 BASE_FOLDER = "transmission_tower_images/organized"
 THERMAL_FOLDER = os.path.join(BASE_FOLDER, "thermal")
 RGB_FOLDER = os.path.join(BASE_FOLDER, "rgb")
@@ -33,7 +32,6 @@ def generate_metadata_csv():
                 category = "Thermal" if "thermal" in folder else "RGB"
                 data.append({"Filename": filename, "Category": category, "Size (KB)": size_kb})
 
-    # Convert data to CSV
     df = pd.DataFrame(data)
     df.to_csv(METADATA_CSV, index=False)
     print(f"Metadata saved in {METADATA_CSV}")
@@ -45,7 +43,6 @@ def cleanup_empty_folders():
             os.rmdir(folder)
             print(f"🗑️ Removed empty folder: {folder}")
 
-# Run the functions
 create_zip()
 generate_metadata_csv()
 cleanup_empty_folders()
