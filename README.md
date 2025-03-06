@@ -15,3 +15,14 @@ It extracts metadata, classifies images, detects hotspots, and automates organiz
 ---
 
 ## 📂 Folder Structure
+project-folder/ │── organize_images.py # Classifies and renames images 
+                │── hotspot_detection.py # Detects hotspots in thermal images 
+                │── automation_script.py # Automates ZIP and CSV generation 
+                │── transmission_tower_images/ 
+                │ ├── raw_images/ # Original images (before processing) 
+                │ ├── organized/ │ │ ├── thermal/ # Processed thermal images 
+                │ │ ├── rgb/ # Processed RGB images 
+                │ │ ├── hotspots/ # Hotspot-marked images 
+                │── organized_images.zip # Final compressed file for upload 
+                │── image_metadata.csv # Metadata report 
+                │── README.md # Project documentation
